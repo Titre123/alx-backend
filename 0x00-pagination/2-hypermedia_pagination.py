@@ -51,23 +51,4 @@ class Server:
             return
                 - List
         '''
-        total_pages = len(self.__dataset) // page_size
-        if (len(self.__dataset) % page_size != 0):
-            total_pages += 1
-        prev_page = None
-        next_page = None
-        if page > 1:
-            prev_page = page - 1
-        if page < total_pages:
-            next_page = page + 1
-        data = self.get_page(page, page_size)
-        return {
-            'page_size': page_size,
-            'page': page,
-            'data': data,
-            'next_page': next_page,
-            'prev_page': prev_page,
-            'total_pages': total_pages
-        }
-        
         
