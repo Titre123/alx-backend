@@ -5,12 +5,12 @@ import csv
 from typing import List
 
 
-def index_range(page: int, page_size: int) -> Tuple[int]:
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """Retrieves the index range from a given page and page size.
     """
-    start_index = (page - 1) * page_size
-    end_index = page * page_size
-    return tuple([start_index, end_index])
+    start = (page - 1) * page_size
+    end = start + page_size
+    return (start, end)
 
 
 class Server:
