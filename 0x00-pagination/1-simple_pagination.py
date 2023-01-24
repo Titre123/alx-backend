@@ -2,16 +2,15 @@
 """Simple pagination sample.
 """
 import csv
-import math
-from typing import List
+from typing import List, Tuple
 
 
-def index_range(page: int, page_size: int) -> Tuple[int]:
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """Retrieves the index range from a given page and page size.
     """
-    start_index = (page - 1) * page_size
-    end_index = page * page_size
-    return tuple([start_index, end_index])
+    start = (page - 1) * page_size
+    end = start + page_size
+    return (start, end)
 
 
 class Server:
@@ -20,6 +19,8 @@ class Server:
     DATA_FILE = "Popular_Baby_Names.csv"
 
     def __init__(self):
+        """Initializes a new Server instance.
+        """
         self.__dataset = None
 
     def dataset(self) -> List[List]:
@@ -34,13 +35,8 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        '''
-            Args:
-                - page: int
-                - page_size: int
-            return
-                - List
-        '''
+        """Retrieves a page of data.
+        """
         assert type(page) == int and type(page_size) == int
         assert page > 0 and page_size > 0
         start, end = index_range(page, page_size)
