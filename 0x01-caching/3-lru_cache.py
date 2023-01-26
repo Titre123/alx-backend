@@ -40,7 +40,4 @@ class LRUCache(BaseCaching):
         """ Get an item by key
         """
         self.priority[key] += 1
-        try:
-            return self.cache_data[key]
-        except TypeError and KeyError:
-            return None
+        return self.cache_data.get(key, None)
