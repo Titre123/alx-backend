@@ -5,18 +5,21 @@
 
 from flask import Flask, render_template
 from babel import Babel
+import pytz
 
 app = Flask(__name__)
 
-Config = __import__('config').Config
-
-app.config['DEFAULT_LOCALE'] = Config.DEFAULT_LOCALE
-app.config['TIMEZONE'] = Config.TIMEZONE
-
-app.config['LANGUAGES'] = Config.LANGUAGES
-
 # babel
 babel = Babel(app)
+
+
+class Config(object):
+    '''Config class for configuration'''
+    LANGUAGES = ['en', 'fr']
+
+    DEFAULT_LOCALE = 'en'
+
+    TIMEZONE = pytz.utc
 
 
 @app.route('/')
