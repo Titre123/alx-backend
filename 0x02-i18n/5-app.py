@@ -30,6 +30,7 @@ users = {
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 
+
 def get_user() -> typing.Dict:
     '''
         get user
@@ -49,16 +50,13 @@ def before_request():
         g.user = user
 
 
-
 @babel.localeselector
 def get_locale():
     '''method to set language'''
     args = request.args.to_dict()
-    try:
-        if args['locale'] is not None and args.get('locale') in app.config['LANGUAGES']:
-            return args['locale']
-    except:
-        return request.accept_languages.best_match(app.config['LANGUAGES'])
+    if 'locale' in args and args.get('locale') in app.config['LANGUAGES']:
+        return args['locale']
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route('/')
