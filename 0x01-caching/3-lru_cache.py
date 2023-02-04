@@ -24,20 +24,26 @@ class LRUCache(BaseCaching):
 
         if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
             if key not in self.cache_data:
-                min = sorted(self.priority.values())[0]
+                min = sorted(list(self.priority.values()))[0]
+                print(min)
                 for k in self.priority.keys():
+                    print(k)
                     if self.priority[k] == min:
                         self.cache_data.pop(k)
-                        self.priority.pop(k)
+                        self.priority.__delattr__(k)
                         print('DISCARD: {}'.format(k))
                         break
 
         if key is not None or item is not None:
             self.cache_data[key] = item
             self.priority[key] = 0
+            print(self.priority)
 
     def get(self, key):
         """ Get an item by key
         """
         self.priority[key] += 1
-        return self.cache_data.get(key, None)
+        try:
+            return self.cache_data[key]
+        except TypeError and KeyError:
+            return None
