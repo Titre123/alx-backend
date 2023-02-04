@@ -8,7 +8,7 @@ from babel import Babel
 import pytz
 
 
-class Config(object):
+class Config:
     '''Config class for configuration'''
     LANGUAGES = ['en', 'fr']
 
