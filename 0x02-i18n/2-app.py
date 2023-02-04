@@ -27,6 +27,7 @@ def Home():
     '''Home route'''
     return render_template('./2-index.html')
 
+
 @babel.localeselector
 def get_locale():
     '''method to set language'''
