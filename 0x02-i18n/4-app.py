@@ -24,6 +24,7 @@ babel = Babel(app)
 
 @babel.localeselector
 def get_locale():
+    '''method to set language'''
     args = request.args.to_dict()
     if args['locale'] and args.get('locale') in app.config['LANGUAGES']:
         return args['locale']
