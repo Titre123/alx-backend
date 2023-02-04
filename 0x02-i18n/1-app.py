@@ -7,11 +7,6 @@ from flask import Flask, render_template
 from babel import Babel
 import pytz
 
-app = Flask(__name__)
-
-# babel
-babel = Babel(app)
-
 
 class Config(object):
     '''Config class for configuration'''
@@ -20,6 +15,13 @@ class Config(object):
     DEFAULT_LOCALE = 'en'
 
     TIMEZONE = pytz.utc
+
+
+app = Flask(__name__)
+app.config.from_object(Config)
+app.url_map.strict_slashes = False
+# babel
+babel = Babel(app)
 
 
 @app.route('/')
