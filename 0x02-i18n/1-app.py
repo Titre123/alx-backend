@@ -4,7 +4,7 @@
 '''
 
 from flask import Flask, render_template
-from babel import Babel
+from flask_babel import Babel
 import pytz
 
 
