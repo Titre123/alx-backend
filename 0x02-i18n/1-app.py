@@ -1,6 +1,10 @@
+#!/usr/bin/env python3
+'''
+    Flask application
+'''
+
 from flask import Flask, render_template
-# ...
-from flask_babel import Babel
+from babel import Babel
 
 app = Flask(__name__)
 
@@ -11,13 +15,14 @@ app.config['TIMEZONE'] = Config.TIMEZONE
 
 app.config['LANGUAGES'] = Config.LANGUAGES
 
-#babel
+# babel
 babel = Babel(app)
 
 
 @app.route('/')
 def Home():
-    return render_template('./1-index.html')
+    '''Home route'''
+    return render_template('./0-index.html')
 
 
 if __name__ == "__main__":
